@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function createNamesPoke (namesPoke) {
+            const response = await fetch ('https://pokeapi.co/api/v2/pokemon');
+
+            if (!response.ok) {
+                const message = `An error has occurred: ${response.status}`;
+                throw new Error(message);
+            }
+
+            const pokemon = await response.json();
+            console.log(pokemon);
+            return pokemon;
+        }
+
+        const namesPoke = {
+            name: "bulbasaur",
+            url: '',
+        };
+
+        createNamesPoke(namesPoke)
+            .then(pokemon => {
+                console.log(pokemon);
+            })
+            .catch(error => {
+                console.log('Error creating info:', error)
+            });
+    </script>
+</body>
+</html>
